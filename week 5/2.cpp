@@ -1,8 +1,31 @@
 #include<bits/stdc++.h>
 using namespace std;
-
+void count_sort(int arr[],int n){
+    int maxi = 0;
+    for(int i=0;i<n;i++){
+        maxi = max(maxi,arr[i]);
+    }
+    // cout<<maxi<<endl;
+    int temp[maxi];
+    for(int i=0;i<=maxi;i++){
+        temp[i] = 0;
+    }
+    for(int i=0;i<n;i++){
+        temp[arr[i]]++;
+    }
+    int j=0;
+    for(int i=0;i<=maxi;i++){
+        while(temp[i]!=0){
+            arr[j++] = i;
+            temp[i]--;
+        }
+     }
+    // for(int i=0;i<n;i++){
+    //     cout<<arr[i]<<" ";
+    // }
+}
 void find_pair(int arr[],int n,int key){
-    sort(arr,arr+n);
+    count_sort(arr,n);
     int i=0;int j=n-1;
     while(i<j){
         int sum=arr[i]+arr[j];
