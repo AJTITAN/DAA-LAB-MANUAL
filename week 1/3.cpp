@@ -9,7 +9,10 @@ void jump_search(int arr[],int n,int k){
         start = end;
         end = end + sqrt(n);
         if(end > n - 1)
-           end = n-1;
+           {
+            end = n-1;
+            break;
+           }
     }
 	   for(int i = start; i <= end; i++) { 
       if(arr[i] == k)
