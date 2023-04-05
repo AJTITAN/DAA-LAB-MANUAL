@@ -25,7 +25,10 @@ void findmax(char arr[],int n){
 }
 
 int main(){
-    int n;
+    int t;
+    cin>>t;
+    while(t--){
+        int n;
     cout<<"Enter the size of array: ";
     cin>>n;
     char arr[n];
@@ -34,6 +37,7 @@ int main(){
         cin>>arr[i];
     }
     findmax(arr,n);
+    }
 
    return 0;
 }
