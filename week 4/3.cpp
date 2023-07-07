@@ -1,44 +1,34 @@
 #include<bits/stdc++.h>
 using namespace std;
-void count_sort(int arr[],int n){
-    int maxi = 0;
-    for(int i=0;i<n;i++){
-        maxi = max(maxi,arr[i]);
+void my_sort(int arr[],int n){
+    int RANGE = 100;
+    int count[RANGE + 1] = {0};
+    for (int i = 0; i < n; i++) {
+        count[arr[i]]++;
     }
-    // cout<<maxi<<endl;
-    int temp[maxi];
-    for(int i=0;i<=maxi;i++){
-        temp[i] = 0;
+    for (int i = 1; i <= RANGE; i++) {
+        count[i] += count[i - 1];
     }
-    for(int i=0;i<n;i++){
-        temp[arr[i]]++;
+    int output[n];
+    for (int i = n - 1; i >= 0; i--) {
+        output[count[arr[i]] - 1] = arr[i];
+        count[arr[i]]--;
     }
-    int j=0;
-    for(int i=0;i<=maxi;i++){
-        while(temp[i]!=0){
-            arr[j++] = i;
-            temp[i]--;
-        }
-     }
-    // for(int i=0;i<n;i++){
-    //     cout<<arr[i]<<" ";
-    // }
+    for (int i = 0; i < n; i++) {
+        arr[i] = output[i];
+    }
 }
 int main()
 {
     int n;
-    cout<<"enter the size of array = ";
     cin>>n;
     int arr[n];
-    cout<<"enter the elements of array"<<endl;
     for(int i=0;i<n;i++){
         cin>>arr[i];
     }
-    count_sort(arr,n);
-    int k;
-    cout<<"enter the kth element index =" ;
-    cin>>k;
-    cout<<"kth smallest element = "<<arr[k-1]<<endl;
-    cout<<"kth largest element = "<<arr[n-k];
+    my_sort(arr,n);
+    for(int i=0;i<n;i++){
+        cout<<arr[i]<<" ";
+    }
     return 0;
 }
