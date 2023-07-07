@@ -29,8 +29,8 @@ void mergesort(int arr[],int n,int s,int e,int &c){
     int m = (s+e)/2;
     if(s<e){
         mergesort(arr,n,s,m, c);
-        merge(arr,n,s,e,m,c);
         mergesort(arr,n,m+1,e, c);
+        merge(arr,n,s,e,m,c);
     }
 }
 int main()
